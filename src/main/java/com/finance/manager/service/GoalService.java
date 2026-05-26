@@ -147,11 +147,11 @@ public class GoalService {
         }
 
         // calculate percentage
-        BigDecimal progressPercentage = BigDecimal.ZERO;
+        BigDecimal progressPercentage = new BigDecimal("0.0");
         if (goal.getTargetAmount().compareTo(BigDecimal.ZERO) > 0) {
             progressPercentage = currentProgress
                 .multiply(new BigDecimal("100"))
-                .divide(goal.getTargetAmount(), 2, RoundingMode.HALF_UP);
+                .divide(goal.getTargetAmount(), 1, RoundingMode.HALF_UP);
         }
 
         // remaining amount
@@ -167,7 +167,7 @@ public class GoalService {
             .targetDate(goal.getTargetDate())
             .startDate(goal.getStartDate())
             .currentProgress(currentProgress)
-            .progressPercentage(progressPercentage.doubleValue())
+            .progressPercentage(progressPercentage)
             .remainingAmount(remainingAmount)
             .build();
     }
